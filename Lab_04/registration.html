@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registration Form</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background: #f6f8fb;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+        }
+        .reg-box {
+            background: #fff;
+            border-radius: 11px;
+            padding: 24px 32px;
+            box-shadow: 0 6px 32px #d0e4f7;
+            width: 340px;
+        }
+        h2 {
+            color: #236886;
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 1.5em;
+            letter-spacing: 1px;
+        }
+        table { width: 100%; }
+        td {
+            padding: 8px 5px;
+            font-size: 1em;
+            color: #194360;
+            background: #f8fafc;
+            border: none;
+        }
+        label {
+            font-size: 1em;
+            color: #2d4a5a;
+        }
+        input, select, textarea {
+            width: 95%;
+            padding: 7px 8px;
+            border-radius: 5px;
+            border: 1px solid #b7ceea;
+            font-size: 1em;
+            background: #eef6fb;
+            color: #224060;
+            margin-top: 2px;
+        }
+        input[type="radio"] {
+            width: auto;
+        }
+        textarea { resize: vertical; }
+        .buttons {
+            text-align: center;
+        }
+        input[type="submit"], input[type="reset"] {
+            background: #299077;
+            color: #fff;
+            border: none;
+            border-radius: 17px;
+            padding: 8px 28px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 0 8px;
+            transition: background 0.14s;
+        }
+        input[type="reset"] { background: #db5462; }
+        input[type="submit"]:hover { background: #21785f; }
+        input[type="reset"]:hover { background: #b23443; }
+    </style>
+</head>
+<body>
+    <div class="reg-box">
+        <h2>Registration Form</h2>
+        <form>
+        <table>
+            <tr>
+                <td><label for="fname">First Name</label></td>
+                <td><input type="text" id="fname" name="fname" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="pass">Password</label></td>
+                <td><input type="password" id="pass" name="pass" required></td>
+            </tr>
+            <tr>
+                <td><label for="dob">DOB</label></td>
+                <td><input type="date" id="dob" name="dob"></td>
+            </tr>
+            <tr>
+                <td><label>Gender</label></td>
+                <td style="background:#f2f7fa">
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male" style="color:#356db0;">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female" style="color:#db5462;">Female</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="country">Country</label></td>
+                <td>
+                    <select id="country" name="country">
+                        <option value="india">India</option>
+                        <option value="usa">USA</option>
+                        <option value="uk">UK</option>
+                        <option value="canada">Canada</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="bio">Bio</label></td>
+                <td><textarea id="bio" name="bio" rows="2"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="buttons" style="background:transparent">
+                    <input type="submit" value="Register">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</body>
+</html>
