@@ -1,112 +1,99 @@
-/* Reset */
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-/* Headings */
-h2 {
-	color: #1a5276;
-	font-family: "Georgia", serif;
-	font-size: 2.2em;
-	margin-bottom: 12px;
-}
-
+h2,
 h3 {
-	color: #2874a6;
-	font-family: "Georgia", serif;
+	font-family: Georgia, serif;
+	color: darkblue;
+	margin: 10px 0;
+}
+h2 {
+	font-size: 2.2em;
+}
+h3 {
 	font-size: 1.6em;
-	margin-bottom: 10px;
+	color: steelblue;
 }
 
-/* Horizontal rule */
 hr {
 	border: none;
 	height: 3px;
-	background: linear-gradient(to right, #2980b9, #6dd5fa);
+	background: linear-gradient(to right, blue, lightblue);
 	margin: 22px 0;
 }
 
-/* Paragraphs */
+p,
+div,
+span,
+time,
+a {
+	font-family: Verdana, sans-serif;
+}
 p {
-	font-family: "Verdana", sans-serif;
-	font-size: 1em;
-	color: #333;
+	color: black;
 	line-height: 1.5;
-	margin: 14px 0;
+	margin: 10px 0;
 }
-
-/* Division */
 div {
-	border: 2px solid #2980b9;
-	padding: 18px;
-	background-color: #d6eaf8;
+	border: 2px solid blue;
+	padding: 16px;
+	background: lightcyan;
+	color: darkblue;
 	border-radius: 5px;
-	font-size: 1.1em;
-	color: #1b4f72;
 }
-
-/* Span */
+div span {
+	font-style: italic;
+	text-decoration: underline;
+}
 span {
-	color: #dc7633;
-	font-weight: 700;
+	color: orange;
+	font-weight: bold;
 }
-
-/* Time with pseudo-element for clock icon */
-time::before {
-	content: "\23F0 "; /* Unicode for alarm clock */
-	color: #2e86c1;
+time {
+	background: lightyellow;
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-weight: bold;
+	color: brown;
 }
-
-/* Center the image */
 .center-img {
 	display: block;
-	margin: 25px auto 20px auto; /* Top/Bottom/Auto centers horizontally */
+	margin: 15px auto;
 	max-width: 100%;
 	height: auto;
 	border-radius: 10px;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-
-/* Anchor styling */
 a {
-	color: #1f618d;
+	color: steelblue;
 	text-decoration: none;
-	transition: color 0.3s ease;
+	transition: color 0.3s;
 }
 a:hover {
-	color: #d35400;
+	color: orange;
 	text-decoration: underline;
 }
-
-/* Class selectors */
-.note {
-	background-color: #fcf3cf;
-	padding: 8px 12px;
-	border-left: 6px solid #f1c40f;
+p > a {
 	font-weight: bold;
 }
-
+.note {
+	background: lightyellow;
+	padding: 8px 12px;
+	border-left: 6px solid gold;
+	font-weight: bold;
+}
 .center-text {
 	text-align: center;
 	font-style: italic;
-	color: #566573;
+	color: gray;
 }
-
-/* ID selector */
 #unique-paragraph {
 	font-size: 1.15em;
-	color: #7d3c98;
-	background-color: #f4ecf7;
+	color: purple;
+	background: lavender;
 	padding: 15px 20px;
 	border-radius: 8px;
-	border: 2px dashed #76448a;
-}
-
-/* Margin adjustment grouped selectors */
-h2,
-h3,
-p {
-	margin-left: 25px;
+	border: 2px dashed purple;
 }
