@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<h2>Welcome to Lab 3</h2>
+		<h2><a href="#">Welcome to Lab 3</a></h2>
 		<h3>About this page</h3>
 		<hr />
 		<p>
@@ -18,10 +18,7 @@
 			Inside this <strong>container</strong>, there's some normal text and
 			a <span>highlighted section</span> for emphasis.
 		</div>
-		<p>
-			Local time is shown as
-			<time id="live-time">--:--:--</time>.
-		</p>
+		<p>Time is shown as <time>00:00</time></p>
 		<img src="img.jpg" alt="Web Tech Lab" class="center-img" />
 		<p class="note">
 			Note: This paragraph uses a class selector for special formatting.
@@ -32,19 +29,5 @@
 		<p id="unique-paragraph">
 			This unique paragraph uses an ID selector with distinct styling.
 		</p>
-
-		<script>
-			// Live clock JavaScript
-			function updateTime() {
-				const timeElement = document.getElementById("live-time");
-				const now = new Date();
-				const hours = now.getHours().toString().padStart(2, "0");
-				const minutes = now.getMinutes().toString().padStart(2, "0");
-				const seconds = now.getSeconds().toString().padStart(2, "0");
-				timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-			}
-			setInterval(updateTime, 1000);
-			updateTime(); // initial call
-		</script>
 	</body>
 </html>
