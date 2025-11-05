@@ -1,88 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Calculator</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				margin: 0;
+				background: white;
+			}
+			.calculator {
+				background: black;
+				color: white;
+				border-radius: 16px;
+				box-shadow: 0 0 20px gray;
+				padding: 20px;
+				width: 300px;
+				display: flex;
+				flex-direction: column;
+			}
+			#display {
+				background: black;
+				color: white;
+				border: none;
+				text-align: right;
+				font-size: 2em;
+				padding: 15px;
+				border-bottom: 2px solid white;
+				margin-bottom: 15px;
+				word-wrap: break-word;
+			}
+			.buttons {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 10px;
+			}
+			button {
+				font-size: 1.2em;
+				padding: 15px;
+				border: none;
+				border-radius: 8px;
+				background: #1a1a1a;
+				color: white;
+				cursor: pointer;
+				transition: 0.2s;
+			}
+			button:hover {
+				background: #333;
+			}
+			.operator {
+				background: orange;
+				color: black;
+			}
+			.operator:hover {
+				background: orangered;
+			}
+			.ac {
+				background: darkred;
+			}
+			.ac:hover {
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="calculator">
+			<input type="text" id="display" readonly />
+			<div class="buttons">
+				<button class="ac" onclick="clearAll()">AC</button>
+				<button class="operator" onclick="setOp('%')">%</button>
+				<button class="operator" onclick="root()">√</button>
+				<button class="operator" onclick="setOp('/')">÷</button>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Simple Calculator</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background: #f0f0f0;
-            margin: 0;
-        }
+				<button onclick="append('7')">7</button>
+				<button onclick="append('8')">8</button>
+				<button onclick="append('9')">9</button>
+				<button class="operator" onclick="setOp('*')">×</button>
 
-        #calc {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 240px;
-        }
+				<button onclick="append('4')">4</button>
+				<button onclick="append('5')">5</button>
+				<button onclick="append('6')">6</button>
+				<button class="operator" onclick="setOp('-')">−</button>
 
-        input {
-            width: 100px;
-            padding: 8px;
-            margin: 5px;
-            font-size: 1em;
-            box-sizing: border-box;
-        }
+				<button onclick="append('1')">1</button>
+				<button onclick="append('2')">2</button>
+				<button onclick="append('3')">3</button>
+				<button class="operator" onclick="setOp('+')">+</button>
 
-        button {
-            width: 100px;
-            margin: 3px;
-            font-size: 1em;
-            padding: 6px;
-            cursor: pointer;
-        }
+				<button onclick="append('0')">0</button>
+				<button onclick="append('.')">.</button>
+				<button class="operator" onclick="square()">x²</button>
+				<button class="operator" onclick="calc()">=</button>
+			</div>
+		</div>
 
-        #display {
-            margin: 10px 0;
-            height: 1.4em;
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
-</head>
+		<script>
+			let disp = document.getElementById("display");
+			let cur = "",
+				prev = "",
+				op = "",
+				expression = "";
 
-<body>
-    <div id="calc">
-        <input type="number" id="num1" placeholder="Number 1" />
-        <input type="number" id="num2" placeholder="Number 2" />
-        <div id="display"></div>
-        <button onclick="calc('+')">Sum</button>
-        <button onclick="calc('*')">Product</button>
-        <button onclick="calc('-')">Difference</button>
-        <button onclick="calc('%')">Remainder</button>
-        <button onclick="calc('/')">Quotient</button>
-        <button onclick="calc('pow')">Power</button>
-        <button onclick="calc('sqrt')">Sqrt Num1</button>
-        <button onclick="calc('square')">Square Num1</button>
-    </div>
+			function updateDisplay(val) {
+				disp.value = val;
+			}
 
-    <script>
-        function calc(op) {
-            let n1 = +document.getElementById('num1').value;
-            let n2 = +document.getElementById('num2').value;
-            let res = '';
-            switch (op) {
-                case '+': res = n1 + n2; break;
-                case '*': res = n1 * n2; break;
-                case '-': res = n1 - n2; break;
-                case '%': res = n1 % n2; break;
-                case '/': res = n2 ? n1 / n2 : '∞'; break;
-                case 'pow': res = Math.pow(n1, n2); break;
-                case 'sqrt': res = n1 >= 0 ? Math.sqrt(n1) : 'NaN'; break;
-                case 'square': res = n1 * n1; break;
-            }
-            document.getElementById('display').textContent = 'Result: ' + res;
-        }
-    </script>
-</body>
+			function append(v) {
+				cur += v;
+				expression += v;
+				updateDisplay(expression);
+			}
 
+			function clearAll() {
+				cur = prev = op = expression = "";
+				updateDisplay("");
+			}
+
+			function setOp(o) {
+				if (cur) {
+					if (prev) calc();
+					op = o;
+					prev = cur;
+					cur = "";
+					expression = prev + " " + o + " ";
+					updateDisplay(expression);
+				}
+			}
+
+			function calc() {
+				if (!prev || !cur) return;
+				let a = +prev,
+					b = +cur,
+					r;
+				switch (op) {
+					case "+":
+						r = a + b;
+						break;
+					case "-":
+						r = a - b;
+						break;
+					case "*":
+						r = a * b;
+						break;
+					case "/":
+						r = a / b;
+						break;
+					case "%":
+						r = a % b;
+						break;
+				}
+				updateDisplay(expression + " = " + r);
+				cur = r.toString();
+				prev = op = "";
+				expression = cur;
+			}
+
+			function root() {
+				if (cur || prev) {
+					let val = cur || prev;
+					let r = Math.sqrt(+val);
+					updateDisplay("√" + val + " = " + r);
+					cur = r.toString();
+					prev = op = "";
+					expression = cur;
+				}
+			}
+
+			function square() {
+				if (cur || prev) {
+					let val = cur || prev;
+					let r = Math.pow(+val, 2);
+					updateDisplay(val + "² = " + r);
+					cur = r.toString();
+					prev = op = "";
+					expression = cur;
+				}
+			}
+		</script>
+	</body>
 </html>

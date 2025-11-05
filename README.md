@@ -1,88 +1,113 @@
 # Web Technology Lab Exercises
 
-This repository contains the web technology lab programs for academic learning and practice.
-
-## Table of Contents
-- [Lab 1: Basic HTML Tags](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_01)
-- [Lab 2: Class Time Table](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_02)
-- [Lab 3: External Style Sheet and CSS Selectors](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_03)
-- [Lab 4: Registration Form](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_04)
-- [Lab 5: Semantic HTML Page](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_05)
-- [Lab 6: Simple Calculator](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_06)
-- [Lab 7: JSON and CSV Data Handling with Hashing](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_07)
-- [Repository Structure](#repository-structure)
+This repository contains the **Web Technology Lab programs** developed for academic learning and practical implementation using HTML, CSS, JavaScript, jQuery, PHP, and AJAX.
 
 ---
 
-## Lab 1: Basic HTML Tags  
-**Folder:** [Lab_01](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_01)  
-**File:** `Myfirstwebpage.html`  
-Develop the HTML page named as “Myfirstwebpage.html”. Add the following tags with relevant content:  
-- Set the title as “My First Web Page”  
-- Use moving text = “Basic HTML Tags”  
-- Different heading tags (h1 to h6)  
-- Paragraph  
-- Horizontal line  
-- Line Break  
-- Block Quote  
-- Pre tag  
-- Different Logical Styles (b, i, u, etc.)
+## [Lab 1: Basic HTML Tags](Lab_01/)
+
+Develop an HTML page named **Myfirstwebpage.html** to demonstrate the use of basic HTML tags:
+
+-   Title as _My First Web Page_
+-   Moving text “Basic HTML Tags”
+-   Various heading tags (h1–h6)
+-   Paragraph, horizontal line, line break
+-   Blockquote and preformatted text
+-   Logical styles such as bold, italic, underline, etc.
 
 ---
 
-## Lab 2: Class Time Table  
-**Folder:** [Lab_02](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_02)  
-**File:** `Table.html`  
-Develop the HTML page named “Table.html” to display your class timetable:  
-- Title as Time Table with table header and footer, row-span and col-span  
-- Various colour options to cells highlighting lab and elective hours distinctly  
-- Colour options for rows
+## [Lab 2: Class Time Table](Lab_02/)
+
+Develop an HTML page named **Table.html** to display a class timetable using table formatting.
+
+-   Include title, header, and footer
+-   Use row-span and col-span
+-   Apply color coding for different rows and lab/elective hours.
 
 ---
 
-## Lab 3: External Style Sheet and CSS Selectors  
-**Folder:** [Lab_03](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_03)  
-**Files:** `style.css`, `index.html`  
-Develop an external style sheet named “style.css” applying different styles for h2, h3, hr, p, div, span, time, img & a tags. Demonstrate significance of CSS selectors.
+## [Lab 3: External Style Sheet and CSS Selectors](Lab_03/)
+
+Develop an external stylesheet **style.css** and apply styles to h2, h3, hr, p, div, span, time, img, and a tags.  
+Demonstrate the importance of different CSS selectors.
 
 ---
 
-## Lab 4: Registration Form  
-**Folder:** [Lab_04](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_04)  
-**File:** `registration.html`  
-Develop an HTML page named “registration.html” having variety of input elements with background colors, table for alignment & font colors and size styled by CSS.
+## [Lab 4: Registration Form](Lab_04/)
+
+Create **registration.html** using HTML and CSS to design a registration form.
+
+-   Include various input elements
+-   Use tables for alignment
+-   Apply colors, font sizes, and styles through CSS.
 
 ---
 
-## Lab 5: Semantic HTML Page  
-**Folder:** [Lab_05](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_05)  
-**File:** `newspaper.html`  
-Develop an HTML page using semantic elements figure, table, aside, section, article, header, footer etc. Apply background colors, text colors, and font sizes.
+## [Lab 5: Semantic HTML Page](Lab_05/)
+
+Develop **newspaper.html** using semantic elements like figure, table, aside, section, article, header, and footer.
+
+-   Apply background colors and font styles to demonstrate structure and readability.
 
 ---
 
-## Lab 6: Simple Calculator  
-**Folder:** [Lab_06](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_06)  
-**File:** `calc.html`  
-Apply HTML, CSS, and JavaScript to design a simple calculator to perform sum, product, difference, remainder, quotient, power, square-root, and square operations with a clean UI.
+## [Lab 6: Simple Calculator](Lab_06/)
+
+Design **calc.html** using HTML, CSS, and JavaScript to perform basic mathematical operations such as:
+
+-   Addition, subtraction, multiplication, division
+-   Remainder, power, square, and square-root
+-   Include a clean and user-friendly interface.
 
 ---
 
-## Lab 7: JSON and CSV Data Handling with Hashing  
-**Folder:** [Lab_07](https://github.com/daddys-dispatch/college_web-dev/tree/main/Lab_07)  
-**File:** `json.html`  
-Develop JavaScript programs with HTML/CSS to:  
-- Convert JSON text to JavaScript Object  
-- Convert JSON results into Date objects  
-- Convert JSON to CSV and CSV back to JSON  
-- Create hash from string using CryptoJS for browser-compatible cryptographic hashing
+## [Lab 7: JSON and CSV Data Handling with Hashing](Lab_07/)
+
+Develop **json.html** using JavaScript to:
+
+-   Convert JSON text to JavaScript objects
+-   Convert JSON results to Date objects
+-   Convert between JSON and CSV formats
+-   Create a hash from strings using CryptoJS for secure hashing.
 
 ---
 
-## Repository Structure  
-- Each lab folder contains files and assets related to the respective lab assignment.  
-- Click the lab folder links above to access the folder on GitHub and explore code and outputs.
+## [Lab 8a: Visitor Counter using PHP](Lab_08a/)
+
+Develop a PHP program (with HTML/CSS) to:
+
+-   Keep track of the number of visitors visiting the web page
+-   Display the visitor count dynamically
+-   Include relevant headings and proper styling.
 
 ---
 
-Feel free to explore the repository and refer to each lab folder for the source code and practical implementations.
+## [Lab 8b: Sorting Student Records using PHP](Lab_08b/)
+
+Develop a PHP program (with HTML/CSS) to:
+
+-   Retrieve student records stored in a database
+-   Implement selection sort to arrange the records
+-   Display the sorted records in a well-styled table.
+
+---
+
+## [Lab 9: jQuery DOM Manipulation and Animation](Lab_09/)
+
+Develop a jQuery script (with HTML/CSS) to:
+a) Append content at the end of an existing paragraph and list.  
+b) Change the state of an element using the **animate()** method.  
+c) Change the color of any div that is being animated.
+
+---
+
+## [Lab 10: JavaScript and AJAX Integration](Lab_10/)
+
+Develop a JavaScript program (with HTML/CSS) demonstrating AJAX functionalities:
+a) Use **ajax()** method (without jQuery) to load text content from a text file.  
+b) Use **ajax()** method (with jQuery) to perform the same operation.  
+c) Illustrate the use of **getJSON()** method in jQuery.  
+d) Demonstrate the use of **parseJSON()** method to display JSON values.
+
+---

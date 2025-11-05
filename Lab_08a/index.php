@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Counter</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .box {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Welcome!</h1>
+        <?php
+        $file = "visitor_count.txt";
+        $count = file_exists($file) ? (int) file_get_contents($file) : 0;
+        file_put_contents($file, ++$count);
+        echo "<h2>Visitor Count</h2><p>You are visitor number: <b>$count</b></p>";
+        ?>
+    </div>
+</body>
+
+</html>

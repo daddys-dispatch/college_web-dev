@@ -1,275 +1,150 @@
 <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JSON/CSV & Hash Tool</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+		<style>
+			body {
+				font-family: Arial;
+				background: white;
+				margin: 0;
+				padding: 20px;
+			}
+			.box {
+				max-width: 700px;
+				margin: auto;
+				background: white;
+				padding: 15px;
+				border-radius: 6px;
+				box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+			}
+			h3 {
+				margin: 10px 0;
+				font-size: 1rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			textarea {
+				width: 100%;
+				height: 80px;
+				margin: 5px 0;
+			}
+			button {
+				background: green;
+				color: white;
+				border: none;
+				padding: 6px 10px;
+				border-radius: 4px;
+				cursor: pointer;
+				font-size: 0.9rem;
+			}
+			button:hover {
+				background: darkgreen;
+			}
+			#result {
+				background: lightgray;
+				margin-top: 12px;
+				padding: 8px;
+				border-radius: 4px;
+				white-space: pre-wrap;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h2>JSON/CSV Converter and Hash Geneator</h2>
+			<h3>
+				a) JSON → Object / Date / CSV
+				<span>
+					<button onclick="toObject()">Object</button>
+					<button onclick="toDate()">Date</button>
+					<button onclick="jsonToCsv()">CSV</button>
+				</span>
+			</h3>
+			<textarea id="jsonInput" placeholder="Enter JSON here"></textarea>
 
-<head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <title>Simple Converter | vtucode</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
+			<h3>
+				b) CSV → JSON
+				<button onclick="csvToJson()">Convert</button>
+			</h3>
+			<textarea id="csvInput" placeholder="Enter CSV here"></textarea>
 
-        body {
-            font-family: Arial, sans-serif;
-            color: #000000;
-        }
+			<h3>
+				c) String → Hash
+				<button onclick="createHash()">Generate</button>
+			</h3>
+			<textarea id="hashInput" placeholder="Enter String here"></textarea>
 
-        .container {
-            width: 60%;
-            margin: 0 auto;
-            padding: 20px;
-        }
+			<div id="result"></div>
+		</div>
 
-        .head-title h1 {
-            font-size: 28px;
-            padding: 10px;
-            color: #fff;
-            margin-bottom: 50px;
-        }
+		<script>
+			const out = (msg) =>
+				(document.getElementById("result").innerText = msg);
 
-        .head-title {
-            width: 100%;
-            background: #000;
-            text-align: center;
-            border-radius: 10px;
-        }
+			function toObject() {
+				try {
+					out(
+						"Object:\n" +
+							JSON.stringify(JSON.parse(jsonInput.value), null, 2)
+					);
+				} catch (e) {
+					out("Error: " + e.message);
+				}
+			}
 
-        .section {
-            margin-bottom: 40px;
-            padding: 20px;
-            border-radius: 8px;
-            background: #fff;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-            transition: all 0.3s;
-            overflow: hidden;
-        }
+			function toDate() {
+				try {
+					const d = new Date(JSON.parse(jsonInput.value).date);
+					out("Date: " + d.toString());
+				} catch (e) {
+					out("Error: " + e.message);
+				}
+			}
 
-        .section h2 {
-            color: #000000;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
+			function jsonToCsv() {
+				try {
+					const a = JSON.parse(jsonInput.value),
+						h = Object.keys(a[0]);
+					const csv = [
+						h.join(","),
+						...a.map((r) =>
+							h.map((k) => JSON.stringify(r[k] || "")).join(",")
+						),
+					].join("\n");
+					out("CSV:\n" + csv);
+				} catch (e) {
+					out("Error: " + e.message);
+				}
+			}
 
+			function csvToJson() {
+				try {
+					const l = csvInput.value.trim().split("\n"),
+						h = l[0].split(",");
+					const j = l.slice(1).map((r) => {
+						const v = r.split(",");
+						return h.reduce((o, k, i) => ((o[k] = v[i]), o), {});
+					});
+					out("JSON:\n" + JSON.stringify(j, null, 2));
+				} catch (e) {
+					out("Error: " + e.message);
+				}
+			}
 
-        textarea {
-            font-size: 14px;
-            width: 100%;
-            height: 120px;
-            margin-bottom: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #00000022;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        textarea:focus {
-            background: transparent;
-            border: 1px solid #00000022;
-            border-color: #007BFF;
-            box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
-            outline: none;
-        }
-
-        input[type="text"] {
-            width: calc(100% - 24px);
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 15px;
-        }
-
-        input[type="text"]:focus {
-            border-color: #007BFF;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-            outline: none;
-        }
-
-        button {
-            display: inline-block;
-            padding: 15px 15px;
-            margin: 10px 0;
-            font-weight: 600;
-            border: none;
-            border-radius: 7px;
-            background-color: #007BFF;
-            color: #fff;
-            cursor: pointer;
-            font-size: 16px;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        button:hover {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007BFF;
-        }
-
-        button:focus {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007BFF;
-        }
-
-        pre {
-            display: none;
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
-            overflow: auto;
-            transition: opacity 0.3s ease;
-        }
-
-        .error {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #000;
-            background: #ffdddd;
-            border-color: #ff0000;
-            padding: 10px;
-        }
-
-        .success {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #000;
-            background: #6ef08d38;
-            border-color: #47e56d;
-            padding: 10px;
-        }
-
-        .adjust-area {
-            margin-top: 30px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="head-title">
-            <h1>Simple Converter</h1>
-        </div>
-        <div class="section">
-            <h2>1. Convert JSON Text to JavaScript Object</h2>
-            <textarea id="jsonInput" placeholder="Enter JSON here..."></textarea>
-            <button onclick="convertJsonToObject()">Convert JSON</button>
-            <pre id="jsonOutput" class="output"></pre>
-        </div>
-
-        <div class="section">
-            <h2>2. Convert JSON Results into Date</h2>
-            <textarea id="jsonDateInput" placeholder='Enter JSON with date in "yyyy-mm-dd" format'></textarea>
-            <button onclick="convertJsonToDate()">Convert to Date</button>
-            <pre id="jsonDateOutput" class="output"></pre>
-        </div>
-
-        <div class="section">
-            <h2>3. Convert JSON to CSV and CSV to JSON</h2>
-            <textarea id="jsonCsvInput" placeholder="Enter JSON for CSV conversion..."></textarea>
-            <button onclick="convertJsonToCsv()">JSON to CSV</button>
-            <pre id="csvOutput" class="output"></pre>
-            <textarea id="csvInput" placeholder="Enter CSV here..." class="adjust-area"></textarea>
-            <button onclick="convertCsvToJson()">CSV to JSON</button>
-            <pre id="jsonCsvOutput" class="output"></pre>
-        </div>
-
-        <div class="section">
-            <h2>4. Create Hash from String</h2>
-            <input type="text" id="hashInput" placeholder="Enter string to hash">
-            <button onclick="createHash()">Create Hash</button>
-            <pre id="hashOutput" class="output"></pre>
-        </div>
-    </div>
-
-    <script>
-        function showResult(id, text, isSuccess) {
-            const element = document.getElementById(id);
-            element.textContent = text;
-            element.className = isSuccess ? 'success' : 'error';
-            element.style.display = 'block';
-            element.style.opacity = '1';
-        }
-
-        function convertJsonToObject() {
-            const jsonInput = document.getElementById('jsonInput').value;
-            try {
-                const jsonObject = JSON.parse(jsonInput);
-                showResult('jsonOutput', JSON.stringify(jsonObject, null, 2), true);
-            } catch (error) {
-                showResult('jsonOutput', 'Invalid JSON', false);
-            }
-        }
-
-        function convertJsonToDate() {
-            const jsonDateInput = document.getElementById('jsonDateInput').value;
-            try {
-                const data = JSON.parse(jsonDateInput);
-                if (data.date && !isNaN(new Date(data.date).getTime())) {
-                    const date = new Date(data.date);
-                    showResult('jsonDateOutput', date.toString(), true);
-                } else {
-                    showResult('jsonDateOutput', 'Invalid Date Format', false);
-                }
-            } catch (error) {
-                showResult('jsonDateOutput', 'Invalid JSON', false);
-            }
-        }
-
-        function convertJsonToCsv() {
-            const jsonInput = document.getElementById('jsonCsvInput').value;
-            try {
-                const jsonArray = JSON.parse(jsonInput);
-                if (Array.isArray(jsonArray) && jsonArray.length > 0) {
-                    const keys = Object.keys(jsonArray[0]);
-                    const csv = [
-                        keys.join(','),
-                        ...jsonArray.map(row => keys.map(key => JSON.stringify(row[key])).join(','))
-                    ].join('\n');
-                    showResult('csvOutput', csv, true);
-                } else {
-                    showResult('csvOutput', 'Invalid JSON: Expected an array with objects.', false);
-                }
-            } catch (error) {
-                showResult('csvOutput', 'Invalid JSON', false);
-            }
-        }
-
-        function convertCsvToJson() {
-            const csvInput = document.getElementById('csvInput').value;
-            try {
-                const lines = csvInput.trim().split('\n');
-                if (lines.length > 1) {
-                    const keys = lines[0].split(',');
-                    if (keys.length > 0) {
-                        const jsonArray = lines.slice(1).map(line => {
-                            const values = line.split(',');
-                            return keys.reduce((obj, key, index) => {
-                                obj[key] = values[index];
-                                return obj;
-                            }, {});
-                        });
-                        showResult('jsonCsvOutput', JSON.stringify(jsonArray, null, 2), true);
-                    } else {
-                        showResult('jsonCsvOutput', 'Invalid CSV: No columns found.', false);
-                    }
-                } else {
-                    showResult('jsonCsvOutput', 'Invalid CSV: No data found.', false);
-                }
-            } catch (error) {
-                showResult('jsonCsvOutput', 'Invalid CSV', false);
-            }
-        }
-
-        function createHash() {
-            const hashInput = document.getElementById('hashInput').value.trim();
-            if (hashInput.length > 0) {
-                const hash = CryptoJS.SHA256(hashInput).toString();
-                showResult('hashOutput', hash, true);
-            } else {
-                showResult('hashOutput', 'Input cannot be empty', false);
-            }
-        }
-    </script>
-</body>
-
+			function createHash() {
+				try {
+					out(
+						"SHA-256:\n" +
+							CryptoJS.SHA256(hashInput.value).toString()
+					);
+				} catch (e) {
+					out("Error: " + e.message);
+				}
+			}
+		</script>
+	</body>
 </html>
