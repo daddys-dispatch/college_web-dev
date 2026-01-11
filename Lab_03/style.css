@@ -1,99 +1,57 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+body {
+	font-family: sans-serif;
 }
 
-h2,
-h3 {
-	font-family: Georgia, serif;
-	color: darkblue;
-	margin: 10px 0;
-}
+h1,
 h2 {
-	font-size: 2.2em;
-}
-h3 {
-	font-size: 1.6em;
-	color: steelblue;
+	text-align: center;
 }
 
 hr {
-	border: none;
-	height: 3px;
-	background: linear-gradient(to right, blue, lightblue);
-	margin: 22px 0;
+	height: 5px;
+	background: blue;
 }
 
-p,
-div,
-span,
-time,
-a {
-	font-family: Verdana, sans-serif;
-}
-p {
-	color: black;
-	line-height: 1.5;
-	margin: 10px 0;
-}
 div {
-	border: 2px solid blue;
-	padding: 16px;
-	background: lightcyan;
-	color: darkblue;
-	border-radius: 5px;
+	border: 1px solid black;
+	padding: 10px;
+	background: lightgrey;
 }
-div span {
-	font-style: italic;
-	text-decoration: underline;
-}
+
 span {
 	color: orange;
 	font-weight: bold;
 }
-time {
-	background: lightyellow;
-	padding: 2px 6px;
-	border-radius: 4px;
-	font-weight: bold;
-	color: brown;
-}
-.center-img {
-	display: block;
-	margin: 15px auto;
-	max-width: 100%;
+
+img {
+	max-width: 50%;
 	height: auto;
-	border-radius: 10px;
+	display: block;
+	margin: 20px auto;
 }
+
 a {
-	color: steelblue;
 	text-decoration: none;
-	transition: color 0.3s;
 }
 a:hover {
 	color: orange;
-	text-decoration: underline;
 }
-p > a {
-	font-weight: bold;
-}
+
 .note {
 	background: lightyellow;
-	padding: 8px 12px;
-	border-left: 6px solid gold;
+	padding: 10px;
+	border-left: 5px solid yellow;
 	font-weight: bold;
 }
-.center-text {
+
+.class-select {
 	text-align: center;
-	font-style: italic;
 	color: gray;
 }
+
 #unique-paragraph {
-	font-size: 1.15em;
 	color: purple;
 	background: lavender;
 	padding: 15px 20px;
-	border-radius: 8px;
-	border: 2px dashed purple;
+	border: 1px dashed purple;
 }

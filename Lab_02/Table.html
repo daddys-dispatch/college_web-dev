@@ -1,197 +1,105 @@
-<!DOCTYPE html>
 <html>
 	<head>
-		<title>Time Table</title>
+		<title>Class Time Table</title>
 		<style>
 			body {
-				font-family: Arial;
-				margin: 30px;
-				color: navy;
-				background: lightgray;
-			}
-			h1 {
-				text-align: center;
-				color: darkblue;
-				margin-bottom: 10px;
-			}
-			.container {
-				position: relative;
-				width: 95%;
-				margin: 0 auto;
-			}
-			.legend {
-				position: absolute;
-				top: 0;
-				right: 0;
-				font-size: 14px;
-				background: #f0f0f0;
-				border: 1px solid #444;
-				padding: 5px;
-				border-radius: 5px;
-			}
-			.legend span {
-				display: inline-block;
-				width: 18px;
-				height: 18px;
-				margin-right: 6px;
-				vertical-align: middle;
-				border: 1px solid #444;
-			}
-			.lab-legend {
-				background: lightcoral;
-			}
-			.free-legend {
-				background: lightgreen;
-			}
-			.elective-legend {
-				background: lightyellow;
-			}
-			.break-legend {
-				background: lightblue;
+				font-family: sans-serif;
 			}
 			table {
 				width: 100%;
 				border-collapse: collapse;
-				margin-top: 25px;
 			}
-			th,
-			td {
-				border: 2px solid #333;
-				padding: 8px;
+			td,
+			th {
+				border: 1px solid black;
+				padding: 10px;
 				text-align: center;
-				font-size: 15px;
 			}
-			thead th {
-				background: gold;
-				color: black;
-			}
-			tbody tr:nth-child(even) td {
-				background: aliceblue;
-			}
-			tbody tr:nth-child(odd) td {
-				background: honeydew;
+			tfoot,
+			th {
+				background-color: lightgray;
+				font-weight: bold;
 			}
 			.lab-hour {
-				background: lightcoral;
-				color: darkred;
-				font-weight: bold;
-			}
-			.free-hour {
-				background: lightgreen;
-				color: darkgreen;
-				font-weight: bold;
+				background-color: pink;
 			}
 			.elective-hour {
-				background: lightyellow;
-				color: goldenrod;
-				font-weight: bold;
+				background-color: lightgreen;
 			}
-			.break-cell {
-				background: lightblue;
-				color: navy;
-				font-weight: bold;
-				writing-mode: vertical-rl;
-				transform: rotate(180deg);
-				white-space: nowrap;
-				width: 25px;
-				padding: 5px 2px;
-				font-size: 14px;
-			}
-			tfoot td {
-				background: gold;
-				color: black;
-				font-weight: bold;
-				font-style: italic;
-				text-align: center;
-				padding: 10px;
-				border-top: 3px solid #333;
+			.lunch-break {
+				background-color: yellow;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			<h1>Time Table</h1>
-			<div class="legend">
-				<p>
-					<span class="lab-legend"></span> Lab &nbsp;<span
-						class="free-legend"
-					></span>
-					Free &nbsp;<span class="elective-legend"></span> Elective
-					&nbsp;<span class="break-legend"></span> Breaks
-				</p>
-			</div>
-			<table>
-				<thead>
-					<tr>
-						<th>Day</th>
-						<th>8:30-9:30</th>
-						<th>9:30-10:30</th>
-						<th>10:30-10:45</th>
-						<th>10:45-11:40</th>
-						<th>11:40-12:35</th>
-						<th>12:35-13:15</th>
-						<th>13:15-14:05</th>
-						<th>14:05-14:55</th>
-						<th>14:55-15:45</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Monday</td>
-						<td>Environmental Studies</td>
-						<td>Software Engg</td>
-						<td class="break-cell" rowspan="5">Snack Break</td>
-						<td class="elective-hour">Unix</td>
-						<td>Research</td>
-						<td class="break-cell" rowspan="5">Lunch Break</td>
-						<td>Theory of Computation</td>
-						<td class="free-hour" colspan="2">Mini Project</td>
-					</tr>
-					<tr>
-						<td>Tuesday</td>
-						<td class="lab-hour elective-hour" colspan="2">
-							Web Tech Lab
-						</td>
-						<td>Computer Networks</td>
-						<td>Research</td>
-						<td>Software Engg</td>
-						<td class="free-hour" colspan="2">NSS</td>
-					</tr>
-					<tr>
-						<td>Wednesday</td>
-						<td colspan="2">Research</td>
-						<td colspan="2">Theory of Computation</td>
-						<td class="elective-hour">Unix</td>
-						<td class="free-hour" colspan="2">Mini Project</td>
-					</tr>
-					<tr>
-						<td>Thursday</td>
-						<td>Software Engg</td>
-						<td>Computer Networks</td>
-						<td>Software Engg</td>
-						<td>Theory of Computation</td>
-						<td class="free-hour" colspan="3">Mini Project</td>
-					</tr>
-					<tr>
-						<td>Friday</td>
-						<td class="lab-hour" colspan="2">
-							Computer Networks Lab
-						</td>
-						<td class="elective-hour">Unix</td>
-						<td>Computer Networks</td>
-						<td class="free-hour" colspan="3">Library</td>
-					</tr>
-					<tr>
-						<td>Saturday</td>
-						<td colspan="9">As per Calendar of Events</td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="10">Bad times Pass</td>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="7">Class Time Table</th>
+				</tr>
+				<tr>
+					<th>Time</th>
+					<th>Monday</th>
+					<th>Tuesday</th>
+					<th>Wednesday</th>
+					<th>Thursday</th>
+					<th>Friday</th>
+					<th>Saturday</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>9:00 – 10:00</td>
+					<td>Math</td>
+					<td>English</td>
+					<td>Science</td>
+					<td>History</td>
+					<td>Geography</td>
+					<td rowspan="6">No Classes</td>
+				</tr>
+				<tr>
+					<td>10:00 – 11:00</td>
+					<td>Physics</td>
+					<td>Chemistry</td>
+					<td>Biology</td>
+					<td class="elective-hour">
+						<span>Computer Science</span>
+					</td>
+					<td class="elective-hour">Art</td>
+				</tr>
+				<tr>
+					<td>11:00 – 12:00</td>
+					<td class="lab-hour" colspan="2">Physics Lab</td>
+					<td class="lab-hour" colspan="2">Chemistry Lab</td>
+					<td class="lab-hour">Biology Lab</td>
+				</tr>
+				<tr>
+					<td>12:00 – 13:00</td>
+					<td class="lunch-break" colspan="5">Lunch Break</td>
+				</tr>
+				<tr>
+					<td>13:00 – 14:00</td>
+					<td>Literature</td>
+					<td>Math</td>
+					<td>English</td>
+					<td>Physics</td>
+					<td>Chemistry</td>
+				</tr>
+				<tr>
+					<td>14:00 – 15:00</td>
+					<td class="elective-hour">Music</td>
+					<td class="elective-hour">Drama</td>
+					<td class="lab-hour" colspan="3">Computer Lab</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="7">
+						Note: Lab hours are highlighted in pink and elective
+						hours in green.
+					</td>
+				</tr>
+			</tfoot>
+		</table>
 	</body>
 </html>
